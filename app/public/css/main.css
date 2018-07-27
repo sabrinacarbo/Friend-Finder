@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* ================= HOME PAGE ================= */
+.jumbotron{
+    background-color: #eeeeee;
+}
+
+.display-4{
+    font-size: 65px;
+}
+
+.btn-primary{
+    background-color: #377bb5;
+    color: white;
+}
+
+footer{
+    color: #377bb5;
+}
+
+/* ================= SURVEY PAGE ================= */
+#name{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+#photo{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+#submitBtn{
+    width: 100%;
+    background-color: #377bb5;
+    border: 1px solid black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+}
