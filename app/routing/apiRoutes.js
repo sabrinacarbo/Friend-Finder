@@ -27,12 +27,12 @@ module.exports = function(app){
         
         var userInput = req.body;
 
-		var userRes = userInput.scores;
+        var userRes = userInput.scores;
 		
 		// Compute best friend match
 		var matchName = '';
 		var matchImage = '';
-		var totalDiff = 10000;
+        var totalDiff = 1000;
 
 		// Examine all existing friends in the list
 		for (var i = 0; i < Friends.length; i++) {
@@ -41,22 +41,22 @@ module.exports = function(app){
 			var diff = 0;
 			for (var j = 0; j < userRes.length; j++) {
 				diff += Math.abs(Friends[i].scores[j] - userRes[j]);
-			}
+            }
 
 			// If lowest difference, record the friend match
-			if (diff < totalDiff) {
+			if (diff <= totalDiff) {
 
 				totalDiff = diff;
 				matchName = Friends[i].name;
 				matchImage = Friends[i].photo;
-			}
+            }            
 		};
 
 		// Add new user
 		Friends.push(userInput);
 
 		// Send appropriate response
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+        res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
     });
 };
 

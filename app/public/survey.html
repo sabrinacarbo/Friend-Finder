@@ -8,9 +8,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
@@ -226,55 +224,57 @@
         </div>
     </div>
     <script>
-        // $(document).ready(function () {
+        $(document).ready(function () {
 
-        //     $('.modal').modal({
-        //         dismissible: false, 
-        //         opacity: .6, 
-        //         inDuration: 300, 
-        //         outDuration: 200, 
-        //     });
-        // });
+            $("#submitBtn").on("click", function () {
+                event.preventDefault();
 
-        $("#submitBtn").on("click", function () {
-            event.preventDefault();
-
-            // Object for the user's data
-            var newFriend = {
-                name: $("#name").val(),
-                photo: $("#photo").val(),
-                scores: [
-                    $("q1").val(),
-                    $("q2").val(),
-                    $("q3").val(),
-                    $("q4").val(),
-                    $("q5").val(),
-                    $("q6").val(),
-                    $("q7").val(),
-                    $("q8").val(),
-                    $("q9").val(),
-                    $("q10").val(),
-                ]
-            };
-
+                // Object for the user's data
+                var newFriend = {
+                    name: $("#name").val(),
+                    photo: $("#photo").val(),
+                    scores: [
+                        $("#q1").val(),
+                        $("#q2").val(),
+                        $("#q3").val(),
+                        $("#q4").val(),
+                        $("#q5").val(),
+                        $("#q6").val(),
+                        $("#q7").val(),
+                        $("#q8").val(),
+                        $("#q9").val(),
+                        $("#q10").val(),
+                    ]
+                };
+            });
+            // if ($(this).val === "") {
+            //     alert("Please finish filling out all fields before submitting!")
+            // } else {
             //Ajax post to friends api
             $.post("/api/friends", newFriend)
                 .done(function (data) {
 
-                    if ($(this).val === "") {
-                        alert("Please finish filling out all fields before submitting!")
-                    } else {
+                    $('.modal').modal({
+                        dismissible: false,
+                        opacity: .6,
+                        inDuration: 300,
+                        outDuration: 200,
+                    });
+                    
+                    //Best match name and img shows in module
+                    $("#matchName").text(data.name);
+                    $("#matchImg").attr("src", data.photo);
 
-                        //Best match name and img shows in module
-                        $("#matchName").text(data.name);
-                        $("#matchImg").attr("src", data.photo);
+                    $("#results-modal").modal("toggle");
 
-                        $("#results-modal").modal("toggle");
-                    };
                 });
-
+            // };
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 
 </body>
 
